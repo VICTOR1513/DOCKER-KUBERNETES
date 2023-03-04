@@ -39,6 +39,10 @@ CREADENCIALES DOCKER
 	User: victor
 	pass: Vsc151315
 
+	DDOCKER HUB:
+	victorsalazarcruz8@gmail.com
+	Vsc151315
+
 --------------------------------------------------------
 EMPAQUETAMOS EL MICROSERVICIO A JAR
 --------------------------------------------------------
@@ -50,8 +54,34 @@ EMPAQUETAMOS EL MICROSERVICIO A JAR
 	EMPAQUETAMOS JAR:
 	.\mvnw.cmd clean package
 
+	EMPAQUETAMOS JAR Y SALTA LAS PRUEVAS TEST:
+	.\mvnw.cmd clean package -DskipTests
+
 	RUN JAR:
 	java -jar nombreApp
+
+--------------------------------------------------------
+DOKERIZAMOS MICROSERVICIO
+--------------------------------------------------------
+
+	CREAMOS LA IMAGEN DE DOCKER:
+		docker build .
+
+	VER IMAGENS:
+		docker images
+
+	CORRER IMAGEN POR ID, PUERTO EXTERIOR(puerto expuesto para el consumo) y INTERIOR(pueto asignado en dokerfile):
+	docker run -p 8000:8001 idImagen
+
+
+	VER CONTENEDORES O LISTAR:
+		docker ps
+
+	DETENER O PARAR CONTENEDOR:
+		docker stop idContenedor
+
+
+
 
 
 
