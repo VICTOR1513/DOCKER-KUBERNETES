@@ -63,22 +63,55 @@ EMPAQUETAMOS EL MICROSERVICIO A JAR
 --------------------------------------------------------
 DOKERIZAMOS MICROSERVICIO
 --------------------------------------------------------
+	CONFIG DOCKERFILE PRUEBA:
+			FROM openjdk:17.0.2
+		#CARPETA DE TRABAJO SE LLAMA AP
+			WORKDIR /app
+		#COPIAMOS A LA CARPETA DE TRABAJO EL JAR
+			COPY ./target/msvc-usuarios-0.0.1-SNAPSHOT.jar .
+		#EPONEMOS EL PUERTO A UTILIZAR
+			EXPOSE 8001
+		#EJECUTAR UN COMANDO PARA CORRER EL MICROSERVICIO ESTO NO ES PARTE DE LA IMAGEN SI NO SE EJECUTA CUNSO SE CORRE LA IMAGEN
+			ENTRYPOINT ["java", "-jar", "msvc-usuarios-0.0.1-SNAPSHOT.jar"]
+
+
+
+IMAGENES
 
 	CREAMOS LA IMAGEN DE DOCKER:
 		docker build .
+		docker build -t nombreImagen .
+		docker build -t nombreImagen . -f .\msvc-usuarios\Dockerfile
+ 
 
 	VER IMAGENS:
 		docker images
 
 	CORRER IMAGEN POR ID, PUERTO EXTERIOR(puerto expuesto para el consumo) y INTERIOR(pueto asignado en dokerfile):
-	docker run -p 8000:8001 idImagen
+		docker run -p 8000:8001 idImagen
 
 
-	VER CONTENEDORES O LISTAR:
+
+
+CONTENEDORES
+
+	LISTAR CONTENEDORES:
 		docker ps
+
+	LISTAR CONTENEDORES DETENIDOS O PARADOS:
+		docker ps -a
 
 	DETENER O PARAR CONTENEDOR:
 		docker stop idContenedor
+
+	CORRER CONTENEDOR YA CREADO:
+		docker start name
+
+	ELIMINAR CONTENEDOR (Debe estar detenido stop el contenedor):
+		docker rm name
+
+	ELIMINAR TODOS LOS CONTENEDOR:
+		docker cointaner prune
 
 
 
